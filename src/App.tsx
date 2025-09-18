@@ -6,6 +6,8 @@ import { Button } from "@/components/ui/button";
 import recruiterImg from "@/images/recrutier.png";
 import friendsImg from "@/images/friends.png";
 import personalImg from "@/images/personal.png";
+import meImg from "@/images/me.png";
+
 
 
 // ================================
@@ -325,18 +327,77 @@ function EducationTab() {
     </div>
   );
 }
-
 function ContactTab() {
   const C = DATA.contact;
   return (
-    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl">
-      <Card className="bg-white/5 border-white/10"><CardContent className="p-4"><div className="text-sm">Email</div><a className="text-lg font-semibold hover:underline" href={`mailto:${C.email}`}>{C.email}</a></CardContent></Card>
-      <Card className="bg-white/5 border-white/10"><CardContent className="p-4"><div className="text-sm">Phone</div><a className="text-lg font-semibold" href={`tel:${C.phone}`}>{C.phone}</a></CardContent></Card>
-      <Card className="bg-white/5 border-white/10"><CardContent className="p-4"><div className="text-sm">GitHub</div><a className="text-lg font-semibold hover:underline" href={C.github} target="_blank">{C.github}</a></CardContent></Card>
-      <Card className="bg-white/5 border-white/10"><CardContent className="p-4"><div className="text-sm">LinkedIn</div><a className="text-lg font-semibold hover:underline" href={C.linkedin} target="_blank">{C.linkedin}</a></CardContent></Card>
+    <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+      {/* Left side: contact info cards */}
+      <div className="grid sm:grid-cols-2 gap-4">
+        <Card className="bg-white/5 border-white/10">
+          <CardContent className="p-4">
+            <div className="text-sm">Email</div>
+            <a
+              className="text-lg font-semibold hover:underline"
+              href={`mailto:${C.email}`}
+            >
+              {C.email}
+            </a>
+          </CardContent>
+        </Card>
+
+        <Card className="bg-white/5 border-white/10">
+          <CardContent className="p-4">
+            <div className="text-sm">Phone</div>
+            <a
+              className="text-lg font-semibold"
+              href={`tel:${C.phone}`}
+            >
+              {C.phone}
+            </a>
+          </CardContent>
+        </Card>
+
+        <Card className="bg-white/5 border-white/10 sm:col-span-2">
+          <CardContent className="p-6">
+            <div className="text-base mb-2">GitHub</div>
+            <a
+              className="text-xl font-semibold hover:underline break-all"
+              href={C.github}
+              target="_blank"
+            >
+              {C.github}
+            </a>
+          </CardContent>
+        </Card>
+
+        <Card className="bg-white/5 border-white/10 sm:col-span-2">
+          <CardContent className="p-6">
+            <div className="text-base mb-2">LinkedIn</div>
+            <a
+              className="text-xl font-semibold hover:underline break-all"
+              href={C.linkedin}
+              target="_blank"
+            >
+              {C.linkedin}
+            </a>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Right side: profile image */}
+      <div className="flex items-center justify-center">
+        <img
+          src={meImg}
+          alt="Naveen Chaitanya"
+          className="rounded-2xl object-cover shadow-lg w-80 h-96"
+        />
+      </div>
     </div>
   );
 }
+
+
+
 
 function HomeTab() {
   return (
