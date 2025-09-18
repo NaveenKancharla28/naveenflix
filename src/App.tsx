@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Github, Linkedin, Mail, GraduationCap, BriefcaseBusiness, FolderGit2, Award, Home as HomeIcon, LogOut } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
@@ -134,6 +134,20 @@ const PROFILE_BLURB: Record<ProfileKey, string> = {
   friends: "Fun stuff, experiments, and side quests.",
   personal: "A full story: journey, goals, and what I'm building next.",
 };
+// --- URL helpers so Back/Forward buttons work ---
+function getProfileFromURL(): ProfileKey | null {
+  const q = new URLSearchParams(window.location.search).get("profile");
+  return q === "recruiter" || q === "friends" || q === "personal" ? q : null;
+}
+
+function setProfileInURL(p: ProfileKey | null, replace = false) {
+  const url = new URL(window.location.href);
+  if (p) url.searchParams.set("profile", p);
+  else url.searchParams.delete("profile");
+  const state = { profile: p };
+  replace ? window.history.replaceState(state, "", url) : window.history.pushState(state, "", url);
+}
+
 
 // ---------- Profile Gate ----------
 function ProfileGate({ onPick }: { onPick: (p: ProfileKey) => void }) {
@@ -497,19 +511,42 @@ function Shell({ onExit, profile }: { onExit: () => void; profile: ProfileKey })
 }
 
 export default function App() {
-  const [profile, setProfile] = useState<ProfileKey | null>(null);
+  // Initialize from URL (?profile=recruiter|friends|personal)
+  const [profile, setProfile] = useState<ProfileKey | null>(getProfileFromURL());
+
+  // Keep state in sync when user presses browser Back/Forward
+  useEffect(() => {
+    const onPop = () => setProfile(getProfileFromURL());
+    window.addEventListener("popstate", onPop);
+    return () => window.removeEventListener("popstate", onPop);
+  }, []);
+
+  // When a profile is picked, push it into the URL
+  const handlePick = (p: ProfileKey) => {
+    setProfile(p);
+    setProfileInURL(p); // adds ?profile=...
+  };
+
+  // When switching profiles, clear the URL so Back works
+  const handleExit = () => {
+    setProfile(null);
+    setProfileInURL(null); // removes ?profile
+  };
 
   return (
     <AnimatePresence mode="wait">
       {profile ? (
         <motion.div key="shell" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-          <Shell profile={profile} onExit={() => setProfile(null)} />
+          <Shell profile={profile} onExit={handleExit} />
         </motion.div>
       ) : (
         <motion.div key="gate" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-          <ProfileGate onPick={setProfile} />
+          <ProfileGate onPick={handlePick} />
         </motion.div>
       )}
     </AnimatePresence>
   );
 }
+
+
+
