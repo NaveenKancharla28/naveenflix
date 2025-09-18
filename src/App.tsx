@@ -3,6 +3,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Github, Linkedin, Mail, GraduationCap, BriefcaseBusiness, FolderGit2, Award, Home as HomeIcon, LogOut } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import recruiterImg from "@/images/recrutier.png";
+import friendsImg from "@/images/friends.png";
+import personalImg from "@/images/personal.png";
+
 
 // ================================
 // Netflix‑Style Portfolio in one file
@@ -11,7 +15,7 @@ import { Button } from "@/components/ui/button";
 // Replace dummy data with your real details (marked TODO)
 // ================================
 
-// ---------- Fake data (TODO: replace with your own) ----------
+// 
 const DATA = {
   name: "Naveen Chaitanya",
   tagline: "AI/ML Engineer • RAG, Agents, MLOps",
@@ -91,7 +95,7 @@ const DATA = {
     }
 
   ],
-  certifications: [
+  certifications: [ 
     { title: "AWS Certified AI Practitioner (AIF‑C01)", sub: "2025", link: "https://www.credly.com/badges/cc5e70ff-52bb-47ec-b707-1589b5b29940/linked_in_profile" },
     { title: "AWS Cloud Practitioner", sub: "2024", link: "#" },
   ],
@@ -131,10 +135,10 @@ const PROFILE_BLURB: Record<ProfileKey, string> = {
 
 // ---------- Profile Gate ----------
 function ProfileGate({ onPick }: { onPick: (p: ProfileKey) => void }) {
-  const profiles: { id: ProfileKey; label: string; color: string }[] = [
-    { id: "recruiter", label: "Recruiter", color: "from-fuchsia-500 to-violet-600" },
-    { id: "friends", label: "Friends", color: "from-sky-500 to-cyan-500" },
-    { id: "personal", label: "Personal", color: "from-emerald-500 to-lime-500" },
+  const profiles: { id: ProfileKey; label: string; color: string; image: string }[] = [
+    { id: "recruiter", label: "Recruiter", color: "from-fuchsia-500 to-violet-600", image: recruiterImg },
+    { id: "friends", label: "Friends", color: "from-sky-500 to-cyan-500", image: friendsImg },
+    { id: "personal", label: "Personal", color: "from-emerald-500 to-lime-500", image: personalImg },
   ];
 
   return (
@@ -146,7 +150,7 @@ function ProfileGate({ onPick }: { onPick: (p: ProfileKey) => void }) {
       >
         Who's watching?
       </motion.h1>
-      <p className="text-neutral-400 mb-8">Choose a profile to enter the portfolio</p>
+      <p className="text-neutral-400 mb-8">Choose a profile to enter the portfolio of Naveen Chaitanya Kancharla</p>
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 w-full max-w-4xl">
         {profiles.map((p, i) => (
@@ -157,18 +161,32 @@ function ProfileGate({ onPick }: { onPick: (p: ProfileKey) => void }) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.05 * i }}
             className={`group relative rounded-2xl overflow-hidden border border-white/10 bg-gradient-to-br ${p.color} p-1`}
+          
           >
-            <div className="rounded-2xl bg-neutral-950 p-6 h-full">
-              <div className="flex items-center gap-4">
-                <div className="size-14 rounded-xl bg-white/10 flex items-center justify-center">
-                  <span className="text-xl font-semibold">{p.label[0]}</span>
-                </div>
+            
+            <div className="rounded-2xl bg-neutral-950 p-6 h-full relative overflow-hidden">
+              {/* soft background on hover */}
+              <img
+                src={p.image}
+                alt=""
+                className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-0
+               group-hover:opacity-20 transition duration-300"
+              />
+
+              <div className="relative z-10 flex items-center gap-4">
+                {/* avatar/thumbnail */}
+                <img
+                  src={p.image}
+                  alt={`${p.label} thumbnail`}
+                  className="size-14 rounded-xl object-cover"
+                />
                 <div className="text-left">
                   <div className="text-lg font-semibold">{p.label}</div>
                   <div className="text-neutral-400 text-sm">{PROFILE_BLURB[p.id]}</div>
                 </div>
               </div>
-              <div className="mt-6">
+
+              <div className="mt-6 relative z-10">
                 <div className="text-xs uppercase tracking-wider text-neutral-400">Hover</div>
                 <div className="mt-2 h-10 rounded-xl bg-gradient-to-r from-transparent via-white/10 to-transparent group-hover:via-white/20" />
               </div>
@@ -411,7 +429,7 @@ function Shell({ onExit, profile }: { onExit: () => void; profile: ProfileKey })
 
       {/* Footer */}
       <footer className="border-t border-white/10 py-8 text-center text-xs text-neutral-500">
-        © {new Date().getFullYear()} {DATA.name}. Built with ❤️ in React, Tailwind, shadcn/ui.
+        © {new Date().getFullYear()} {DATA.name}. Built by Naveen Chaitanya Kancharla with ❤️ in React, Tailwind, shadcn/ui.
       </footer>
     </div>
   );
