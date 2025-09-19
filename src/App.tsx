@@ -7,6 +7,9 @@ import recruiterImg from "@/images/recrutier.png";
 import friendsImg from "@/images/friends.png";
 import personalImg from "@/images/personal.png";
 import meImg from "@/images/me.png";
+// ADD to existing lucide-react import list
+import { User } from "lucide-react";
+
 
 
 
@@ -111,6 +114,28 @@ const DATA = {
     github: "https://github.com/NaveenKancharla28",
     linkedin: "https://www.linkedin.com/in/naveen-chaitanya-kancharla-358337238/",
   },
+    personal: {
+    focus: "Self-Adapting Language Models",
+    blurb:
+      "I’m exploring LLMs that learn continuously from interactions — adjusting prompts, retrieval, and lightweight adapters on the fly without full retrains.",
+    prototype: [
+      {
+        title: "On-the-Fly Persona Adapter",
+        sub: "RAG + short-term memory + LoRA slots",
+        badge: "Prototype",
+        desc:
+          "A chat agent that watches user tone & domain terms, then auto-tunes its responses with a small adapter layer and fresh retrieval context.",
+        link: "#"
+      }
+    ],
+    hobbies: [
+      "Hiking",
+      "Photography",
+      "Open-source Mapping (OSM)",
+      "Cooking spicy mango things"
+    ]
+  },
+
   
   
 };
@@ -123,6 +148,7 @@ const tabs = [
   { key: "education", label: "Education", icon: GraduationCap },
   { key: "contact", label: "Contact", icon: Mail },
   { key: "home", label: "Home", icon: HomeIcon },
+  { key: "personal", label: "Personal", icon: User },
 ] as const;
 
 type TabKey = typeof tabs[number]["key"];
@@ -217,7 +243,18 @@ function ProfileGate({ onPick }: { onPick: (p: ProfileKey) => void }) {
 }
 
 // ---------- Top Nav (Netflix‑like) ----------
-function TopNav({ active, setActive, onExit }: { active: TabKey; setActive: (k: TabKey) => void; onExit: () => void }) {
+// ---------- Top Nav (Netflix-like) ----------
+function TopNav({
+  active,
+  setActive,
+  onExit,
+  profile,                 // 👈 new prop
+}: {
+  active: TabKey;
+  setActive: (k: TabKey) => void;
+  onExit: () => void;
+  profile: ProfileKey;     // 👈 new prop type
+}) {
   return (
     <div className="sticky top-0 z-50 bg-neutral-950/80 backdrop-blur border-b border-white/10">
       <div className="mx-auto max-w-7xl px-4 py-3 flex items-center gap-4">
@@ -225,26 +262,31 @@ function TopNav({ active, setActive, onExit }: { active: TabKey; setActive: (k: 
           <div className="size-6 rounded-sm bg-red-600" />
           <span className="font-semibold tracking-tight">NAVEENFLIX</span>
         </div>
+
         <nav className="ml-6 hidden sm:flex items-center gap-1">
-          {tabs.map(({ key, label, icon: Icon }) => (
-            <Button
-              key={key}
-              variant="ghost"
-              className={`relative px-3 text-sm text-neutral-300 hover:text-white transition ${active === key ? "text-white" : ""}`}
-              onMouseEnter={() => setActive(key)}
-              onClick={() => setActive(key)}
-            >
-              <div className="flex items-center gap-2">
-                <Icon className="h-4 w-4" />
-                {label}
-              </div>
-              {/* Netflix underline hover */}
-              <span
-                className={`absolute left-2 right-2 -bottom-1 h-0.5 rounded bg-red-500 transition-transform ${active === key ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"}`}
-              />
-            </Button>
-          ))}
+          {tabs
+            .filter(t => t.key !== "personal" || profile === "personal") // 👈 hide Personal unless profile=personal
+            .map(({ key, label, icon: Icon }) => (
+              <Button
+                key={key}
+                variant="ghost"
+                className={`relative px-3 text-sm text-neutral-300 hover:text-white transition ${active === key ? "text-white" : ""}`}
+                onMouseEnter={() => setActive(key)}
+                onClick={() => setActive(key)}
+              >
+                <div className="flex items-center gap-2">
+                  <Icon className="h-4 w-4" />
+                  {label}
+                </div>
+                <span
+                  className={`absolute left-2 right-2 -bottom-1 h-0.5 rounded bg-red-500 transition-transform ${
+                    active === key ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                  }`}
+                />
+              </Button>
+            ))}
         </nav>
+
         <div className="ml-auto flex items-center gap-2">
           <a href={DATA.contact.github} target="_blank" className="p-2 text-neutral-300 hover:text-white">
             <Github className="h-5 w-5" />
@@ -260,6 +302,7 @@ function TopNav({ active, setActive, onExit }: { active: TabKey; setActive: (k: 
     </div>
   );
 }
+
 
 // ---------- Row (Netflix carousel‑like) ----------
 function Row({ title, items }: { title: string; items: { title: string; sub?: string; badge?: string; desc?: string; link?: string }[] }) {
@@ -299,8 +342,27 @@ function Row({ title, items }: { title: string; items: { title: string; sub?: st
     </div>
   );
 }
+// ---------- Helpers ----------
+function Chips({ items }: { items: string[] }) {
+  return (
+    <div className="flex flex-wrap gap-2">
+      {items.map((t) => (
+        <span
+          key={t}
+          className="text-xs bg-white/10 border border-white/10 px-2.5 py-1 rounded-full"
+        >
+          {t}
+        </span>
+      ))}
+    </div>
+  );
+}
+
+
+
 
 // ---------- Tab Panels ----------
+
 function ExperienceTab() {
   return (
     <div>
@@ -309,6 +371,55 @@ function ExperienceTab() {
     </div>
   );
 }
+function PersonalTab() {
+  const P = DATA.personal;
+  return (
+    <div className="grid lg:grid-cols-3 gap-6 items-start">
+      {/* Left: self-adapting LM focus */}
+      <Card className="bg-white/5 border-white/10 lg:col-span-2">
+        <CardContent className="p-6">
+          <div className="text-sm uppercase tracking-wider text-neutral-400">Focus</div>
+          <h3 className="mt-1 text-2xl font-semibold">{P.focus}</h3>
+          <p className="text-sm text-neutral-300 mt-3">{P.blurb}</p>
+
+          {/* Prototype row */}
+          <div className="mt-6">
+            <Row title="Prototype" items={P.prototype} />
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Right: hobbies + video */}
+      <div className="space-y-4">
+        {/* Hobbies card */}
+        <Card className="bg-white/5 border-white/10">
+          <CardContent className="p-6">
+            <div className="text-sm uppercase tracking-wider text-neutral-400">Hobbies</div>
+            <h4 className="mt-1 text-lg font-semibold">Outside the keyboard</h4>
+            <div className="mt-3">
+              <Chips items={P.hobbies} />
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Video below hobbies */}
+        <div className="rounded-2xl overflow-hidden shadow-lg">
+          <video
+            src="/hobbies.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-auto"
+          />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
+
 
 function ProjectsTab() {
   return (
@@ -450,30 +561,37 @@ function HomeTab() {
 // ---------- Main Shell ----------
 function Shell({ onExit, profile }: { onExit: () => void; profile: ProfileKey }) {
   // Default to professional work first
-  const [active, setActive] = useState<TabKey>("experience");
+  const [active, setActive] = useState<TabKey>(
+  profile === "personal" ? "personal" : "experience"
+);
+
 
   const Panel = useMemo(() => {
-    switch (active) {
-      case "experience":
-        return <ExperienceTab />;
-      case "projects":
-        return <ProjectsTab />;
-      case "certs":
-        return <CertsTab />;
-      case "education":
-        return <EducationTab />;
-      case "contact":
-        return <ContactTab />;
-      case "home":
-        return <HomeTab />;
-      default:
-        return <ExperienceTab />;
-    }
-  }, [active]);
+  switch (active) {
+    case "personal":
+      return <PersonalTab />;
+    case "experience":
+      return <ExperienceTab />;
+    case "projects":
+      return <ProjectsTab />;
+    case "certs":
+      return <CertsTab />;
+    case "education":
+      return <EducationTab />;
+    case "contact":
+      return <ContactTab />;
+    case "home":
+      return <HomeTab />;
+    default:
+      return <ExperienceTab />;
+  }
+}, [active]);
+
 
   return (
     <div className="min-h-screen bg-neutral-950 text-neutral-50">
-      <TopNav active={active} setActive={setActive} onExit={onExit} />
+      <TopNav active={active} setActive={setActive} onExit={onExit} profile={profile} />
+
 
       {/* Hero Banner */}
       <div className="relative">
