@@ -102,7 +102,18 @@ const DATA = {
   ],
   certifications: [ 
     { title: "AWS Certified AI Practitioner (AIF‑C01)", sub: "2025", link: "https://www.credly.com/badges/cc5e70ff-52bb-47ec-b707-1589b5b29940/linked_in_profile" },
-    { title: "AWS Cloud Practitioner", sub: "2024", link: "#" },
+    { 
+    title: "Python Programming Course (SLA Academy)", 
+    sub: "2021", 
+    link: "/certs/Python.png" },
+    { 
+    title: "Machine Learning & Big Data with Python & R (Prag Robotics)", 
+    sub: "2022", 
+    link: "/certs/ML_BigData.jpg" 
+  },
+
+
+    
   ],
   education: [
     { title: "M.S. Information Technology", sub: "St. Francis College, Brooklyn — GPA 3.84", link: "#" },
