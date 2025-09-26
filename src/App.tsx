@@ -27,11 +27,19 @@ const DATA = {
   // Shown as carousels/rows within tabs
   experience: [
     {
-      title: "Multi‑Document RAG Chatbot",
-      sub: "Python • LangChain • FastAPI • FAISS • Docker",
-      badge: "Personal Project",
-      desc: "Designed multi‑doc RAG with chunking, embeddings, retrieval and streaming responses. 35% latency improvement after caching + prompt optimization.",
-      link: "https://github.com/NaveenKancharla28/Multi-Doctument-RAG-chatbot",
+      title: "SIPTEK GROUP",
+      sub: "Software Support Engineer Intern| 12/2022 – 08/2023",
+      badge: "Professional Experience",
+      desc: "Delivered advanced support across Linux & Windows, resolving 150+ tickets with 95% SLA adherence. Debugged network protocols (HTTP, FTP, SSH) and Oracle DB/SQL issues, cutting resolution time by 23%. Collaborated in 20+ escalated troubleshooting sessions, maintained 100% CRM documentation, and identified 12+ bugs in beta cycles.",
+      
+    },
+    
+    {
+      title: "Chat Assistant For Discount Tire (DEMO)",
+      sub: "JavaScript • Realtime GPT • DiscountTire • WebSocket",
+      badge: "Prototype for DiscountTire",
+      desc: "Created a Chat assistant that helps users find and book tires from DiscountTire based on their preferences and requirements. ",
+      link: "https://github.com/NaveenKancharla28/Chat_Assistant_For_Tires",
     },
     {
       title: "AI Code Reviewer",
@@ -39,13 +47,6 @@ const DATA = {
       badge: "Personal Project",
       desc: "Automates PR reviews, flags bugs and smells, comments inline. 30% faster bug detection in test repos.",
       link: "https://github.com/NaveenKancharla28/AI-Code-Reviewer",
-    },
-    {
-      title: "Chat Assistant For Discount Tire (DEMO)",
-      sub: "JavaScript • Realtime GPT • DiscountTire • WebSocket",
-      badge: "Prototype for DiscountTire",
-      desc: "Created a Chat assistant that helps users find and book tires from DiscountTire based on their preferences and requirements. ",
-      link: "https://github.com/NaveenKancharla28/Chat_Assistant_For_Tires",
     },
   ],
   projects: [
