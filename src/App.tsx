@@ -23,7 +23,7 @@ import { User } from "lucide-react";
 // 
 const DATA = {
   name: "Naveen Chaitanya",
-  tagline: "AI/ML Engineer • RAG, Agents, MLOps",
+  tagline: "Technical Support Engineer | AI/ML Engineer | Full-Stack Developer",
   // Shown as carousels/rows within tabs
   experience: [
     {
@@ -154,12 +154,12 @@ const DATA = {
 
 // ---------- Utilities ----------
 const tabs = [
+  { key: "home", label: "Home", icon: HomeIcon },
   { key: "experience", label: "Experience", icon: BriefcaseBusiness },
   { key: "projects", label: "Projects", icon: FolderGit2 },
   { key: "certs", label: "Certifications", icon: Award },
   { key: "education", label: "Education", icon: GraduationCap },
   { key: "contact", label: "Contact", icon: Mail },
-  { key: "home", label: "Home", icon: HomeIcon },
   { key: "personal", label: "Personal", icon: User },
 ] as const;
 
@@ -544,9 +544,10 @@ function HomeTab() {
           <div className="text-2xl font-semibold">{DATA.name}</div>
           <div className="text-neutral-400 mt-2">{DATA.tagline}</div>
           <p className="text-sm text-neutral-300 mt-4">
-            {/* TODO: Replace with your short bio */}
-            I build AI systems end‑to‑end: RAG, agent workflows, and MLOps. I focus on shipping
-            reliable, secure experiences with measurable impact.
+            {/*  Replace with your short bio */}
+            I started my career delivering advanced technical support across Linux, Windows, databases, and network protocols — resolving high-pressure escalations and ensuring reliable, secure client operations. This background taught me how to debug under pressure, communicate clearly with stakeholders, and deliver measurable uptime and SLA improvements.
+            <br /><br />
+            Building on that foundation, I now engineer end-to-end AI systems — specializing in RAG, agent workflows, and MLOps — focused on shipping scalable, secure, and impactful solutions.
           </p>
           <div className="mt-4 flex gap-2">
             <a href={DATA.contact.github} target="_blank"><Button>View GitHub</Button></a>
@@ -559,11 +560,31 @@ function HomeTab() {
         <CardContent className="p-6">
           <div className="text-sm uppercase tracking-wider text-neutral-400">Now Playing</div>
           <div className="mt-3 text-lg font-semibold">Latest Work</div>
-          <ul className="mt-2 text-sm list-disc list-inside text-neutral-300">
-            <li>Agentic chatbot with tool use</li>
-            <li>Demand forecasting dashboard</li>
-            <li>Voice hotel assistant (realtime)</li>
-          </ul>
+          <div className="mt-4 space-y-3">
+            <div className="flex items-start gap-3">
+              <div className="size-2 rounded-full bg-red-500 mt-2 flex-shrink-0" />
+              <div>
+                <div className="text-sm font-medium">Automated Issue-Resolution Chatbot</div>
+                <div className="text-xs text-neutral-400">Agents + Tool Use</div>
+              </div>
+            </div>
+            
+            <div className="flex items-start gap-3">
+              <div className="size-2 rounded-full bg-blue-500 mt-2 flex-shrink-0" />
+              <div>
+                <div className="text-sm font-medium">Demand Forecasting Dashboard</div>
+                <div className="text-xs text-neutral-400">SQL + ML Pipelines</div>
+              </div>
+            </div>
+            
+            <div className="flex items-start gap-3">
+              <div className="size-2 rounded-full bg-green-500 mt-2 flex-shrink-0" />
+              <div>
+                <div className="text-sm font-medium">Voice Hotel Assistant</div>
+                <div className="text-xs text-neutral-400">Realtime Processing</div>
+              </div>
+            </div>
+          </div>
         </CardContent>
       </Card>
     </div>
@@ -574,7 +595,7 @@ function HomeTab() {
 function Shell({ onExit, profile }: { onExit: () => void; profile: ProfileKey }) {
   // Default to professional work first
   const [active, setActive] = useState<TabKey>(
-  profile === "personal" ? "personal" : "experience"
+  profile === "personal" ? "personal" : "home"
 );
 
 
