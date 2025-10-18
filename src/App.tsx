@@ -28,9 +28,9 @@ const DATA = {
   experience: [
     {
       title: "SIPTEK GROUP",
-      sub: "Software Support Engineer Intern| 12/2022 – 08/2023",
+      sub: "Machine Learning Engineer| 02/2024 – 09/2025",
       badge: "Professional Experience",
-      desc: "Delivered advanced support across Linux & Windows, resolving 150+ tickets with 95% SLA adherence. Debugged network protocols (HTTP, FTP, SSH) and Oracle DB/SQL issues, cutting resolution time by 23%. Collaborated in 20+ escalated troubleshooting sessions, maintained 100% CRM documentation, and identified 12+ bugs in beta cycles.",
+      desc: "Delivered end-to-end ML pipeline automation and SaaS personalization for e-commerce, boosting CTR by 35% and reducing latency 30%. Engineered PostgreSQL ETL pipelines, optimized ALS/XGBoost models, deployed via FastAPI + Docker + Kubernetes, and ensured 99.9% uptime through CI/CD monitoring.",
       
     },
     
