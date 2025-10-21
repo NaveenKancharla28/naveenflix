@@ -9,10 +9,6 @@ import personalImg from "@/images/personal.png";
 import meImg from "@/images/me.png";
 // ADD to existing lucide-react import list
 import { User } from "lucide-react";
-
-
-
-
 // ================================
 // Netflix‑Style Portfolio in one file
 // Tailwind + shadcn/ui + Framer Motion
@@ -23,7 +19,7 @@ import { User } from "lucide-react";
 // 
 const DATA = {
   name: "Naveen Chaitanya",
-  tagline: "Technical Support Engineer | AI/ML Engineer | Full-Stack Developer",
+  tagline: "Machine Learning Engineer | AI/ML Engineer | Full-Stack Developer",
   // Shown as carousels/rows within tabs
   experience: [
     {
@@ -152,6 +148,7 @@ const DATA = {
   
 };
 
+
 // ---------- Utilities ----------
 const tabs = [
   { key: "home", label: "Home", icon: HomeIcon },
@@ -253,6 +250,9 @@ function ProfileGate({ onPick }: { onPick: (p: ProfileKey) => void }) {
     </div>
   );
 }
+
+
+
 
 // ---------- Top Nav (Netflix‑like) ----------
 // ---------- Top Nav (Netflix-like) ----------
@@ -545,7 +545,7 @@ function HomeTab() {
           <div className="text-neutral-400 mt-2">{DATA.tagline}</div>
           <p className="text-sm text-neutral-300 mt-4">
             {/*  Replace with your short bio */}
-            I started my career delivering advanced technical support across Linux, Windows, databases, and network protocols — resolving high-pressure escalations and ensuring reliable, secure client operations. This background taught me how to debug under pressure, communicate clearly with stakeholders, and deliver measurable uptime and SLA improvements.
+            Began my journey in machine learning by developing personalized AI systems and fine-tuning large language models to deliver meaningful, human-like responses. My focus lies in generative AI, model optimization, and MLOps — turning experimental ideas into production-ready, high-impact AI applications.
             <br /><br />
             Building on that foundation, I now engineer end-to-end AI systems — specializing in RAG, agent workflows, and MLOps — focused on shipping scalable, secure, and impactful solutions.
           </p>
