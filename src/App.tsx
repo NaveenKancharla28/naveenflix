@@ -47,7 +47,7 @@ const DATA = {
   ],
   projects: [
     {
-      title: "AI-Powered Resume Builder and Applied Job Tracker",
+      title: "AI-Powered Resume  Builder and Applied Job Tracker",
       sub: "Python • Flask • OpenAI API",
       badge: "Personal Project",
       desc: "Generates tailored resumes based on job descriptions using GPT-4.",
