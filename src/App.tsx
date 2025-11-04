@@ -31,21 +31,43 @@ const DATA = {
     },
     
     {
-      title: "Chat Assistant For Discount Tire (DEMO)",
+      title: "Chat Assistant For Discount Tire Corporation (DEMO)",
       sub: "JavaScript • Realtime GPT • DiscountTire • WebSocket",
       badge: "Prototype for DiscountTire",
       desc: "Created a Chat assistant that helps users find and book tires from DiscountTire based on their preferences and requirements. ",
       link: "https://github.com/NaveenKancharla28/Chat_Assistant_For_Tires",
     },
     {
-      title: "AI Code Reviewer",
-      sub: "Python • LLM • Static Analysis • GitHub Actions",
+      title: "AI-Powered Resume Builder and Applied Job Tracker",
+      sub: "Python • Flask • OpenAI API",
       badge: "Personal Project",
-      desc: "Automates PR reviews, flags bugs and smells, comments inline. 30% faster bug detection in test repos.",
-      link: "https://github.com/NaveenKancharla28/AI-Code-Reviewer",
+      desc: "Generates tailored resumes based on job descriptions using GPT-4.",
+      link: "https://github.com/NaveenKancharla28/AI-Powered-Resume-Tailor",
     },
   ],
   projects: [
+    {
+      title: "AI-Powered Resume Builder and Applied Job Tracker",
+      sub: "Python • Flask • OpenAI API",
+      badge: "Personal Project",
+      desc: "Generates tailored resumes based on job descriptions using GPT-4.",
+      link: "https://github.com/NaveenKancharla28/AI-Powered-Resume-Tailor",
+    },
+    {
+      title: "Chat Assistant For Discount Tire Corporation (DEMO)",
+      sub: "JavaScript • Realtime GPT • DiscountTire • WebSocket",
+      badge: "Prototype for DiscountTire",
+      desc: "Created a Chat assistant that helps users find and book tires from DiscountTire based on their preferences and requirements. ",
+      link: "https://github.com/NaveenKancharla28/Chat_Assistant_For_Tires",
+    },
+    {
+      title: "Prompt-to-Image-Mini-Generator-App",
+      sub: "Python • FastAPI • SDXL • Streamlit",
+      badge: "Personal Project",
+      desc: "This project is a text-to-image generator powered by Stable Diffusion XL (SDXL) and the Hugging Face Diffusers library.",
+      link: "https://github.com/NaveenKancharla28/Prompt-to-Image-Mini-Generator-"
+    
+    },
     {
       title: "Walmart Demand Forecasting",
       sub: "XGBoost • RandomForest • Pandas • Plotly",
@@ -60,13 +82,7 @@ const DATA = {
       desc: "This is an intelligent agent that can analyze images containing text (like handwritten notes or meal plans) and extract meaningful content from them using LangChain and OpenAI.",
       link: "https://github.com/NaveenKancharla28/image-to-text-agent",
     },
-    {
-      title: "Chat Assistant For Discount Tire (DEMO)",
-      sub: "JavaScript • Realtime GPT • DiscountTire • WebSocket",
-      badge: "Prototype for DiscountTire",
-      desc: "Created a Chat assistant that helps users find and book tires from DiscountTire based on their preferences and requirements. ",
-      link: "https://github.com/NaveenKancharla28/Chat_Assistant_For_Tires",
-    },
+    
     {
       title: "AI Code Reviewer",
       sub: "Python • LLM • Static Analysis • GitHub Actions",
@@ -81,13 +97,7 @@ const DATA = {
       desc: "Designed multi‑doc RAG with chunking, embeddings, retrieval and streaming responses. 35% latency improvement after caching + prompt optimization.",
       link: "https://github.com/NaveenKancharla28/Multi-Doctument-RAG-chatbot",
     },
-    {
-      title: "AI-Powered Resume Builder and Applied Job Tracker",
-      sub: "Python • Flask • OpenAI API",
-      badge: "Personal Project",
-      desc: "Generates tailored resumes based on job descriptions using GPT-4.",
-      link: "https://github.com/NaveenKancharla28/AI-Powered-Resume-Tailor",
-    },
+    
     {
       title: "Sentiment Analysis on Twitter Data",
       sub: "Python • Tweepy • NLTK • Streamlit",
