@@ -109,6 +109,7 @@ const DATA = {
   ],
   certifications: [ 
     { title: "AWS Certified AI Practitioner (AIF‑C01)", sub: "2025", link: "https://www.credly.com/badges/cc5e70ff-52bb-47ec-b707-1589b5b29940/linked_in_profile" },
+     {title:"BCG‑Gen AI Job Simulation", sub:"2025", link:"https://www.theforage.com/completion-certificates/SKZxezskWgmFjRvj9/gabev3vXhuACr48eb_SKZxezskWgmFjRvj9_HoXcbLKymGLvJcAMX_1762727058497_completion_certificate.pdf" },
     { 
     title: "Python Programming Course (SLA Academy)", 
     sub: "2021", 
@@ -562,7 +563,13 @@ function HomeTab() {
           <div className="mt-4 flex gap-2">
             <a href={DATA.contact.github} target="_blank"><Button>View GitHub</Button></a>
             <a href={DATA.contact.linkedin} target="_blank"><Button variant="secondary">Connect on LinkedIn</Button></a>
-            <a href="#contact"><Button variant="ghost">Contact</Button></a>
+            <a
+              href={`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent('nvnknchrl@gmail.com')}&su=${encodeURIComponent('Hello from your portfolio')}&body=${encodeURIComponent('Hi Naveen,\n\nI saw your site and...')}`}
+               target="_blank"
+              rel="noopener noreferrer"
+              >
+               <Button variant="ghost">Contact</Button>
+              </a>
           </div>
         </CardContent>
       </Card>
