@@ -545,7 +545,7 @@ function ContactTab() {
 }
 
 
-
+``
 
 function HomeTab() {
   return (
@@ -564,11 +564,18 @@ function HomeTab() {
             <a href={DATA.contact.github} target="_blank"><Button>View GitHub</Button></a>
             <a href={DATA.contact.linkedin} target="_blank"><Button variant="secondary">Connect on LinkedIn</Button></a>
             <a
-              href={`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent('nvnknchrl@gmail.com')}&su=${encodeURIComponent('Hello from your portfolio')}&body=${encodeURIComponent('Hi Naveen,\n\nI saw your site and...')}`}
-               target="_blank"
-              rel="noopener noreferrer"
-              >
-               <Button variant="ghost">Contact</Button>
+                href={`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent('nvnknchrl@gmail.com')}&su=${encodeURIComponent('Hello from your portfolio')}&body=${encodeURIComponent('Hi Naveen,\n\nI saw your site and...')}`}
+                onClick={(e) => {
+               e.preventDefault();
+                window.open(
+                `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent('nvnknchrl@gmail.com')}&su=${encodeURIComponent('Hello from your portfolio')}&body=${encodeURIComponent('Hi Naveen,\n\nI saw your site and...')}`,
+                'gmailComposeWindow',
+                'width=700,height=600,left=100,top=100'
+               );
+                }}
+                rel="noopener noreferrer"
+                >
+                <Button variant="ghost">Contact</Button>
               </a>
           </div>
         </CardContent>
