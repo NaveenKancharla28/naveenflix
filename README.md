@@ -122,7 +122,7 @@ Production → main branch
 
 Preview → dev branch
 
-Visit your live site: https://naveenflix.vercel.app
+Visit my live site: https://naveenflix.vercel.app
 
 📫 Contact
 Email: nvnknchrl@gmail.com
