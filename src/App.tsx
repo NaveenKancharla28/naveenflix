@@ -9,6 +9,7 @@ import personalImg from "@/images/personal.png";
 import meImg from "@/images/me.png";
 // ADD to existing lucide-react import list
 import { User } from "lucide-react";
+
 // ================================
 // Netflix‑Style Portfolio in one file
 // Tailwind + shadcn/ui + Framer Motion
@@ -20,7 +21,7 @@ import { User } from "lucide-react";
 const DATA = {
   name: "Naveen Chaitanya",
   tagline: "Machine Learning Engineer | AI/ML Engineer | Full-Stack Developer",
-  // Shown as carousels/rows within tabs
+  
   experience: [
     {
       title: "SIPTEK GROUP",
@@ -46,6 +47,15 @@ const DATA = {
     },
   ],
   projects: [
+
+    {
+      title: "Self-Correcting-RAG-pipeline",
+      sub: "Python • LangChain • OpenAI • FAISS",
+      badge: "Personal Project",
+      desc: "Implemented a RAG pipeline that self-corrects its answers by re-querying the LLM with feedback from an initial response evaluation step.",
+      link: "https://github.com/NaveenKancharla28/Self-Correcting-RAG-pipeline"
+
+    },
     {
       title: "AI-Powered Resume  Builder and Applied Job Tracker",
       sub: "Python • Flask • OpenAI API",
@@ -68,6 +78,8 @@ const DATA = {
       link: "https://github.com/NaveenKancharla28/Prompt-to-Image-Mini-Generator-"
     
     },
+
+    
     {
       title: "Walmart Demand Forecasting",
       sub: "XGBoost • RandomForest • Pandas • Plotly",
@@ -446,8 +458,38 @@ function PersonalTab() {
 
 function ProjectsTab() {
   return (
-    <div>
-      <Row title="Featured Projects" items={DATA.projects} />
+    <div className="mb-8">
+      <h3 className="text-lg font-semibold mb-3">Featured Projects</h3>
+      <div className="flex flex-col gap-4">
+        {DATA.projects.map((it, i) => (
+          <motion.a
+            key={it.title + i}
+            href={it.link || "#"}
+            target="_blank"
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="group"
+          >
+            <Card className="bg-white/5 border-white/10 rounded-2xl overflow-hidden">
+              <CardContent className="p-0">
+                <div className="h-36 bg-gradient-to-br from-neutral-800 to-neutral-900" />
+                <div className="p-4">
+                  <div className="flex items-center gap-2">
+                    <div className="text-sm font-semibold">{it.title}</div>
+                    {it.badge && (
+                      <span className="text-[10px] rounded bg-white/10 px-2 py-0.5">{it.badge}</span>
+                    )}
+                  </div>
+                  {it.sub && <div className="text-xs text-neutral-400 mt-1">{it.sub}</div>}
+                  {it.desc && <div className="text-xs text-neutral-300 mt-2 line-clamp-3">{it.desc}</div>}
+                  <div className="mt-3 text-xs text-red-400 opacity-0 group-hover:opacity-100 transition">Open ↗</div>
+                </div>
+              </CardContent>
+            </Card>
+          </motion.a>
+        ))}
+      </div>
     </div>
   );
 }
