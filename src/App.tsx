@@ -9,6 +9,7 @@ import personalImg from "@/images/personal.png";
 import meImg from "@/images/me.png";
 // ADD to existing lucide-react import list
 import { User } from "lucide-react";
+import { link } from "fs";
 
 // ================================
 // Netflix‑Style Portfolio in one file
@@ -25,7 +26,7 @@ const DATA = {
   experience: [
     {
       title: "SIPTEK GROUP",
-      sub: "Machine Learning Engineer| 02/2024 – 09/2025",
+      sub: "Machine Learning Engineer| 12/2022 – 11/2023",
       badge: "Professional Experience",
       desc: "Delivered end-to-end ML pipeline automation and SaaS personalization for e-commerce, boosting CTR by 35% and reducing latency 30%. Engineered PostgreSQL ETL pipelines, optimized ALS/XGBoost models, deployed via FastAPI + Docker + Kubernetes, and ensured 99.9% uptime through CI/CD monitoring.",
       
@@ -69,6 +70,14 @@ const DATA = {
       badge: "Prototype for DiscountTire",
       desc: "Created a Chat assistant that helps users find and book tires from DiscountTire based on their preferences and requirements. ",
       link: "https://github.com/NaveenKancharla28/Chat_Assistant_For_Tires",
+    },
+    {
+      title: "virtual-voice-assistant",
+      sub: "Python • FastAPI • SpeechRecognition • websockets • fly.io • amadeus-api-integration",
+      badge: "Personal Project",
+      desc: "A voice‑based virtual assistant for hotel guests, handling requests like room service, bookings, and local info using speech recognition and websockets deployed on fly.io with Amadeus API integration.",
+      link: "https://github.com/NaveenKancharla28/Virtual-Voice-Assistant",
+      
     },
     {
       title: "Prompt-to-Image-Mini-Generator-App",
