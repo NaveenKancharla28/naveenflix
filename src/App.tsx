@@ -9,7 +9,7 @@ import personalImg from "@/images/personal.png";
 import meImg from "@/images/me.png";
 // ADD to existing lucide-react import list
 import { User } from "lucide-react";
-import { link } from "fs";
+
 
 // ================================
 // Netflix‑Style Portfolio in one file
