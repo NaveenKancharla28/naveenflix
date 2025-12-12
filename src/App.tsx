@@ -1,6 +1,6 @@
 import { useMemo, useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Github, Linkedin, Mail, GraduationCap, BriefcaseBusiness, FolderGit2, Award, Home as HomeIcon, LogOut } from "lucide-react";
+import { Github, Linkedin, Mail, GraduationCap, BriefcaseBusiness, FolderGit2, Award, Home as HomeIcon, LogOut, Menu, X } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import recruiterImg from "@/images/recrutier.png";
@@ -9,7 +9,7 @@ import personalImg from "@/images/personal.png";
 import meImg from "@/images/me.png";
 // ADD to existing lucide-react import list
 import { User } from "lucide-react";
-
+const isBrowser = typeof window !== "undefined";
 
 // ================================
 // Netflix‑Style Portfolio in one file
@@ -203,16 +203,25 @@ const PROFILE_BLURB: Record<ProfileKey, string> = {
 };
 // --- URL helpers so Back/Forward buttons work ---
 function getProfileFromURL(): ProfileKey | null {
+  if (!isBrowser) return null; // SSR / non-browser safety
+
   const q = new URLSearchParams(window.location.search).get("profile");
   return q === "recruiter" || q === "friends" || q === "personal" ? q : null;
 }
 
 function setProfileInURL(p: ProfileKey | null, replace = false) {
+  if (!isBrowser) return; // SSR / non-browser safety
+
   const url = new URL(window.location.href);
   if (p) url.searchParams.set("profile", p);
   else url.searchParams.delete("profile");
+
   const state = { profile: p };
-  replace ? window.history.replaceState(state, "", url) : window.history.pushState(state, "", url);
+  if (replace) {
+    window.history.replaceState(state, "", url);
+  } else {
+    window.history.pushState(state, "", url);
+  }
 }
 
 
@@ -292,57 +301,118 @@ function TopNav({
   active,
   setActive,
   onExit,
-  profile,                 // 👈 new prop
+  profile,
 }: {
   active: TabKey;
   setActive: (k: TabKey) => void;
   onExit: () => void;
-  profile: ProfileKey;     // 👈 new prop type
+  profile: ProfileKey;
 }) {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const filteredTabs = tabs.filter(t => t.key !== "personal" || profile === "personal");
+
   return (
     <div className="sticky top-0 z-50 bg-neutral-950/80 backdrop-blur border-b border-white/10">
       <div className="mx-auto max-w-7xl px-4 py-3 flex items-center gap-4">
+        {/* Logo */}
         <div className="flex items-center gap-2">
           <div className="size-6 rounded-sm bg-red-600" />
           <span className="font-semibold tracking-tight">NAVEENFLIX</span>
         </div>
 
-        <nav className="ml-6 hidden sm:flex items-center gap-1">
-          {tabs
-            .filter(t => t.key !== "personal" || profile === "personal") // 👈 hide Personal unless profile=personal
-            .map(({ key, label, icon: Icon }) => (
-              <Button
-                key={key}
-                variant="ghost"
-                className={`relative px-3 text-sm text-neutral-300 hover:text-white transition ${active === key ? "text-white" : ""}`}
-                onMouseEnter={() => setActive(key)}
-                onClick={() => setActive(key)}
-              >
-                <div className="flex items-center gap-2">
-                  <Icon className="h-4 w-4" />
-                  {label}
-                </div>
-                <span
-                  className={`absolute left-2 right-2 -bottom-1 h-0.5 rounded bg-red-500 transition-transform ${
-                    active === key ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
-                  }`}
-                />
-              </Button>
-            ))}
+        {/* Desktop Navigation */}
+        <nav className="ml-6 hidden md:flex items-center gap-1">
+          {filteredTabs.map(({ key, label, icon: Icon }) => (
+            <Button
+              key={key}
+              variant="ghost"
+              className={`relative px-3 text-sm text-neutral-300 hover:text-white transition ${active === key ? "text-white" : ""}`}
+              onMouseEnter={() => setActive(key)}
+              onClick={() => setActive(key)}
+            >
+              <div className="flex items-center gap-2">
+                <Icon className="h-4 w-4" />
+                {label}
+              </div>
+              <span
+                className={`absolute left-2 right-2 -bottom-1 h-0.5 rounded bg-red-500 transition-transform ${
+                  active === key ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                }`}
+              />
+            </Button>
+          ))}
         </nav>
 
+        {/* Right side actions */}
         <div className="ml-auto flex items-center gap-2">
-          <a href={DATA.contact.github} target="_blank" className="p-2 text-neutral-300 hover:text-white">
+          <a href={DATA.contact.github} target="_blank" className="p-2 text-neutral-300 hover:text-white hidden sm:block">
             <Github className="h-5 w-5" />
           </a>
-          <a href={DATA.contact.linkedin} target="_blank" className="p-2 text-neutral-300 hover:text-white">
+          <a href={DATA.contact.linkedin} target="_blank" className="p-2 text-neutral-300 hover:text-white hidden sm:block">
             <Linkedin className="h-5 w-5" />
           </a>
-          <Button variant="ghost" className="text-neutral-300 hover:text-white" onClick={onExit}>
+          <Button variant="ghost" className="text-neutral-300 hover:text-white hidden sm:flex" onClick={onExit}>
             <LogOut className="h-4 w-4 mr-2" /> Switch Profile
+          </Button>
+
+          {/* Mobile Hamburger Button */}
+          <Button
+            variant="ghost"
+            className="md:hidden text-neutral-300 hover:text-white p-2"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </Button>
         </div>
       </div>
+
+      {/* Mobile Menu Dropdown */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden bg-neutral-950/95 border-t border-white/10 overflow-hidden"
+          >
+            <div className="px-4 py-4 space-y-2">
+              {filteredTabs.map(({ key, label, icon: Icon }) => (
+                <button
+                  key={key}
+                  onClick={() => {
+                    setActive(key);
+                    setMobileMenuOpen(false);
+                  }}
+                  className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left transition ${
+                    active === key
+                      ? "bg-red-600/20 text-white border border-red-500/50"
+                      : "text-neutral-300 hover:bg-white/5 hover:text-white"
+                  }`}
+                >
+                  <Icon className="h-5 w-5" />
+                  <span className="font-medium">{label}</span>
+                </button>
+              ))}
+
+              {/* Mobile social links & exit */}
+              <div className="pt-4 mt-4 border-t border-white/10 flex items-center justify-between">
+                <div className="flex items-center gap-4">
+                  <a href={DATA.contact.github} target="_blank" className="p-2 text-neutral-300 hover:text-white">
+                    <Github className="h-5 w-5" />
+                  </a>
+                  <a href={DATA.contact.linkedin} target="_blank" className="p-2 text-neutral-300 hover:text-white">
+                    <Linkedin className="h-5 w-5" />
+                  </a>
+                </div>
+                <Button variant="ghost" className="text-neutral-300 hover:text-white" onClick={() => { onExit(); setMobileMenuOpen(false); }}>
+                  <LogOut className="h-4 w-4 mr-2" /> Switch
+                </Button>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
@@ -588,7 +658,7 @@ function ContactTab() {
         <img
           src={meImg}
           alt="Naveen Chaitanya"
-          className="rounded-2xl object-cover shadow-lg w-80 h-96"
+          className="rounded-2xl object-cover shadow-lg w-48 h-60 sm:w-64 sm:h-80 lg:w-80 lg:h-96"
         />
       </div>
     </div>
@@ -596,7 +666,7 @@ function ContactTab() {
 }
 
 
-``
+
 
 function HomeTab() {
   return (
@@ -742,12 +812,14 @@ export default function App() {
 
   // Keep state in sync when user presses browser Back/Forward
   useEffect(() => {
-    const onPop = () => setProfile(getProfileFromURL());
-    window.addEventListener("popstate", onPop);
-    return () => window.removeEventListener("popstate", onPop);
-  }, []);
+  if (!isBrowser) return;
 
-  // When a profile is picked, push it into the URL
+  const onPop = () => setProfile(getProfileFromURL());
+  window.addEventListener("popstate", onPop);
+  return () => window.removeEventListener("popstate", onPop);
+}, []);
+
+  // When a profile is picked, push it into the URL/state
   const handlePick = (p: ProfileKey) => {
     setProfile(p);
     setProfileInURL(p); // adds ?profile=...
