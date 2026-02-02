@@ -21,15 +21,21 @@ const isBrowser = typeof window !== "undefined";
 // 
 const DATA = {
   name: "Naveen Chaitanya",
-  tagline: "Machine Learning Engineer | AI/ML Engineer | Full-Stack Developer",
+  tagline: "Software Engineer  | SDET | Junior Software Developer| ML Engineer ",
   
   experience: [
+    
     {
-      title: "SIPTEK GROUP",
-      sub: "Machine Learning Engineer| 12/2022 – 11/2023",
+      title: "Tidal Infotech",
+      sub: "Software Engineer (Machine Learning) | Aug 2025 – Present",
       badge: "Professional Experience",
-      desc: "Delivered end-to-end ML pipeline automation and SaaS personalization for e-commerce, boosting CTR by 35% and reducing latency 30%. Engineered PostgreSQL ETL pipelines, optimized ALS/XGBoost models, deployed via FastAPI + Docker + Kubernetes, and ensured 99.9% uptime through CI/CD monitoring.",
-      
+      desc: "Designed and developed RESTful APIs using MongoDB as the primary database, replacing in-memory storage to enable persistent,scalable data management. Built and enhanced responsive web interfaces using React.js, collaborating with backend services to deliver seamless end-to-endfunctionality.• Developed a Retrieval-Augmented Generation (RAG) system leveraging OpenAI embeddings and vector storage, enablingaccurate document-based question answering and contextual data retrieval.• Implemented CI/CD pipelines using Docker to containerize applications, ensuring consistent builds and faster deployments acrossenvironments.Deployed and managed containerized applications using Kubernetes, improving scalability, fault tolerance, and operationalefficiency in production environments."
+    },
+    {
+      title: "GigaByte Tech Solutions",
+      sub: "Junior Software Developer | Jan 2021 – Dec 2023 | Bangalore, India",
+      badge: "Professional Experience",
+      desc: "Built a SaaS personalization platform for an e-commerce client to improve CTR and reduce time-to-result by delivering tailored product recommendations. Designed and implemented ETL pipelines to process raw PostgreSQL logs into clean user–item interaction datasets for analytics. Performed feature engineering on user, item, and context data; experimented with ALS, XGBoost, and LightGBM to optimize recommendation accuracy. Deployed trained models as FastAPI microservices in Docker, integrated with the frontend via REST APIs, and scaled deployments using Kubernetes. Improved system latency by precomputing top recommendations, monitored performance with Prometheus & Grafana, and ran A/B tests for model evaluation. Automated model retraining and CI/CD pipelines, enabling continuous experimentation and seamless deployment to staging and production environments. Collaborated with QA and product teams in Agile/Scrum, supporting sprint planning, E2E testing, and production defect resolution. Tech Stack: JavaScript, Node.js, Express.js, Python, FastAPI, Docker, PostgreSQL, MySQL, MongoDB, Airflow, XGBoost, LightGBM, TensorFlow, PyTorch, Spring Boot, Spring Security, JWT, Redis/Caching Layers, REST APIs, JSON, XML, CI/CD (Jenkins, GitHub Actions), Linux, Agile/Scrum.",
     },
     
     {
@@ -677,9 +683,9 @@ function HomeTab() {
           <div className="text-neutral-400 mt-2">{DATA.tagline}</div>
           <p className="text-sm text-neutral-300 mt-4">
             {/*  Replace with your short bio */}
-            Began my journey in machine learning by developing personalized AI systems and fine-tuning large language models to deliver meaningful, human-like responses. My focus lies in generative AI, model optimization, and MLOps — turning experimental ideas into production-ready, high-impact AI applications.
+            Started my career as a Junior Software Developer building scalable backend systems, REST APIs, and ML-powered recommendation platforms. I've worked across the full stack—Node.js, Spring Boot, PostgreSQL, and deployed ML models with FastAPI and Docker.
             <br /><br />
-            Building on that foundation, I now engineer end-to-end AI systems — specializing in RAG, agent workflows, and MLOps — focused on shipping scalable, secure, and impactful solutions.
+            Now as a Software Engineer in Test, I design automation frameworks using Java, JavaScript, Selenium, and Playwright for banking APIs and microservices. I integrate CI/CD pipelines with Jenkins and GitHub Actions, and leverage AI/GenAI tools for smarter test automation—reducing regression cycles by 30%.
           </p>
           <div className="mt-4 flex gap-2">
             <a href={DATA.contact.github} target="_blank"><Button>View GitHub</Button></a>
